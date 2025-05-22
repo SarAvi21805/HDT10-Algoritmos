@@ -31,4 +31,11 @@ public class GrafoTest {
         int[][] matriz = grafo.getMatrizAdyacencia();
         assertEquals(Integer.MAX_VALUE, matriz[0][1]);
     }
+
+     @Test
+    public void testAlgoritmoFloydWarshall() {
+        grafo.algoritmoFloydWarshall();
+        int[][] matriz = grafo.getMatrizAdyacencia();
+        assertEquals(4, matriz[0][2]); // A -> C
+    }
 }
