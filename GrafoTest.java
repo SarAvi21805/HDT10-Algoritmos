@@ -24,4 +24,11 @@ public class GrafoTest {
         int[][] matriz = grafo.getMatrizAdyacencia();
         assertEquals(5, matriz[0][2]);
     }
+
+        @Test
+    public void testEliminarVertice() {
+        grafo.eliminarVertice(0, 1); // A -> B
+        int[][] matriz = grafo.getMatrizAdyacencia();
+        assertEquals(Integer.MAX_VALUE, matriz[0][1]);
+    }
 }
