@@ -30,4 +30,16 @@ public class Grafo {
     public void eliminarVertice(int origen, int destino) {
         matrizAdyacencia[origen][destino] = Integer.MAX_VALUE;
     }
+
+    public void algoritmoFloydWarshall() {
+        for (int k = 0; k < V; k++) { /* iteración nodos intermedios */
+            for (int i = 0; i < V; i++) { /* iteración nodos origen */
+                for (int j = 0; j < V; j++) { /* iteración nodos destino */
+                    if (matrizAdyacencia[i][k] != Integer.MAX_VALUE && matrizAdyacencia[k][j] != Integer.MAX_VALUE) { /* Búsqueda de caminos existentes de i a k y de k a j */
+                        matrizAdyacencia[i][j] = Math.min(matrizAdyacencia[i][j], matrizAdyacencia[i][k] + matrizAdyacencia[k][j]); /* Actualización de distancia mínima de i a j comparada a la actual pasando por k */
+                    }
+                }
+            }
+        }
+    }
 }
