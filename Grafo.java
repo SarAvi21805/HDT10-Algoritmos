@@ -26,4 +26,8 @@ public class Grafo {
     public void agregarVertice(int origen, int destino, int peso) {
         matrizAdyacencia[origen][destino] = peso;
     }
+
+    public void eliminarVertice(int origen, int destino) {
+        matrizAdyacencia[origen][destino] = Integer.MAX_VALUE;
+    }
 }
