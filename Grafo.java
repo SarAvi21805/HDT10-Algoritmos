@@ -1,9 +1,29 @@
+/* 
+ * Nombre: Alejandra Avilés
+ * Carnet: 24722
+ * Tarea: Hoja de Trabajo 10
+ * Fecha de entrega: 22 de mayo de 2025
+ * Fecha de última modificación: 22 de mayo de 2025
+ */
+
 import java.util.Arrays;
 
+/**
+ * Clase que representa un grafo dirigido utilizando una matriz de adyacencia.
+ * Permite agregar y eliminar aristas, calcular caminos mínimos con el algoritmo
+ * de Floyd-Warshall y determinar el centro del grafo.
+ */
 public class Grafo {
     private final int V; // Número de vértices
     private final int[][] matrizAdyacencia; // Matriz de adyacencia
 
+    /**
+     * Constructor que inicializa el grafo con un número dado de vértices.
+     * La matriz de adyacencia se inicializa con infinito (Integer.MAX_VALUE)
+     * para representar la ausencia de aristas, y 0 en la diagonal principal.
+     *
+     * @param V número de vértices del grafo
+     */
     public Grafo(int V) {
         this.V = V;
         matrizAdyacencia = new int[V][V];
@@ -15,6 +35,11 @@ public class Grafo {
         }
     }
 
+    /**
+     * Devuelve una copia de la matriz de adyacencia actual del grafo.
+     *
+     * @return copia de la matriz de adyacencia
+     */
     public int[][] getMatrizAdyacencia() {
         int[][] copia = new int[V][V];
         for (int i = 0; i < V; i++) {
@@ -23,14 +48,33 @@ public class Grafo {
         return copia;
     }
 
-    public void agregarVertice(int origen, int destino, int peso) {
+    /**
+     * Agrega una arista dirigida desde el vértice origen al vértice destino con un peso dado.
+     *
+     * @param origen  índice del vértice origen
+     * @param destino índice del vértice destino
+     * @param peso    peso de la arista
+     */
+    public void agregarArista(int origen, int destino, int peso) {
         matrizAdyacencia[origen][destino] = peso;
     }
 
-    public void eliminarVertice(int origen, int destino) {
+    /**
+     * Elimina la arista dirigida desde el vértice origen al vértice destino,
+     * estableciendo su peso a infinito (sin conexión).
+     *
+     * @param origen  índice del vértice origen
+     * @param destino índice del vértice destino
+     */
+    public void eliminarArista(int origen, int destino) {
         matrizAdyacencia[origen][destino] = Integer.MAX_VALUE;
     }
 
+    /**
+     * Aplica el algoritmo de Floyd-Warshall para calcular las distancias mínimas
+     * entre todos los pares de vértices en el grafo.
+     * Actualiza la matriz de adyacencia con las distancias mínimas encontradas.
+     */
     public void algoritmoFloydWarshall() {
         for (int k = 0; k < V; k++) { /* iteración nodos intermedios */
             for (int i = 0; i < V; i++) { /* iteración nodos origen */
@@ -43,6 +87,9 @@ public class Grafo {
         }
     }
 
+    /**
+     * Imprime la matriz de adyacencia en consola, mostrando "∞" para distancias infinitas.
+     */
     public void imprimirMatriz() {
         for (int[] fila : matrizAdyacencia) {
             for (int peso : fila) {
@@ -56,6 +103,12 @@ public class Grafo {
         }
     }
 
+    /**
+     * Calcula el centro del grafo, definido como el vértice que minimiza la distancia máxima
+     * a todos los demás vértices.
+     *
+     * @return índice del vértice centro del grafo
+     */
     public int calcularCentroGrafo() {
         int centro = -1;
         int menorDistanciaMaxima = Integer.MAX_VALUE;

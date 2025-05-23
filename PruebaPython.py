@@ -1,3 +1,9 @@
+# Nombre: Alejandra Avilés
+# Carnet: 24722
+# Tarea: Hoja de Trabajo 10
+# Fecha de entrega: 22 de mayo de 2025
+# Fecha de última modificación: 22 de mayo de 2025
+ 
 import networkx as nx
 
 # Crear un grafo dirigido
