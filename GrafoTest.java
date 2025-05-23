@@ -8,7 +8,6 @@ public class GrafoTest {
     @Before
     public void setUp() {
         grafo = new Grafo(5);
-        // A: 0, B: 1, C: 2, D: 3, E: 4
         grafo.agregarVertice(0, 1, 3); // A -> B
         grafo.agregarVertice(1, 2, 1); // B -> C
         grafo.agregarVertice(0, 3, 7); // A -> D
@@ -16,6 +15,8 @@ public class GrafoTest {
         grafo.agregarVertice(3, 4, 3); // D -> E
         grafo.agregarVertice(2, 3, 2); // C -> D
         grafo.agregarVertice(4, 0, 4); // E -> A
+        grafo.agregarVertice(2, 1, 2); // C -> B
+      //  grafo.agregarVertice(3, 1, 1); // D -> B
     }
 
     @Test
@@ -37,5 +38,12 @@ public class GrafoTest {
         grafo.algoritmoFloydWarshall();
         int[][] matriz = grafo.getMatrizAdyacencia();
         assertEquals(4, matriz[0][2]); // A -> C
+    }
+
+        @Test
+    public void testCalcularCentroGrafo() {
+        grafo.algoritmoFloydWarshall();
+        int centro = grafo.calcularCentroGrafo();
+        assertEquals(0, centro); // B es el centro
     }
 }
