@@ -42,4 +42,36 @@ public class Grafo {
             }
         }
     }
+
+    public void imprimirMatriz() {
+        for (int[] fila : matrizAdyacencia) {
+            for (int peso : fila) {
+                if (peso == Integer.MAX_VALUE) {
+                    System.out.print("∞ ");
+                } else {
+                    System.out.print(peso + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public int calcularCentroGrafo() {
+        int centro = -1;
+        int menorDistanciaMaxima = Integer.MAX_VALUE;
+
+        for (int i = 0; i < V; i++) {
+            int maxDistancia = 0;
+            for (int j = 0; j < V; j++) {
+                if (matrizAdyacencia[i][j] != Integer.MAX_VALUE) {
+                    maxDistancia = Math.max(maxDistancia, matrizAdyacencia[i][j]);
+                }
+            }
+            if (maxDistancia < menorDistanciaMaxima) {
+                menorDistanciaMaxima = maxDistancia;
+                centro = i;
+            }
+        }
+        return centro;
+    }
 }
